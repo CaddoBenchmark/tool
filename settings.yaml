@@ -1,0 +1,9 @@
+data:
+  path: 'data/input.caddo'
+
+modules:
+  data_loader: 'wrapper'
+  data_preprocessor: 'wrapper'
+  net_trainer: 'wrapper'
+  net_tester: 'wrapper'
+  net_evaluator: 'wrapper'
