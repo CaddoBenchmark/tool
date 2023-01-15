@@ -1,9 +1,9 @@
 data:
-  path: 'data/input.caddo'
+  path: 'sample-data/data'
 
 modules:
-  data_loader: 'wrapper'
-  data_preprocessor: 'wrapper'
-  net_trainer: 'wrapper'
-  net_tester: 'wrapper'
-  net_evaluator: 'wrapper'
+  model_initializer: 'sample-data.wrapper-sample'
+  data_preprocessor: 'sample-data.wrapper-sample'
+  model_trainer: 'sample-data.wrapper-sample'
+  model_tester: 'sample-data.wrapper-sample'
+  model_evaluator: 'sample-data.wrapper-sample'
