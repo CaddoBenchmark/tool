@@ -1,4 +1,3 @@
-# preprocess data in framework
 def preprocess(attributes) -> {}:
     from modules.attributes import Attributes
     """
@@ -6,7 +5,7 @@ def preprocess(attributes) -> {}:
     :param data: data read in previous step
     :return: data in same shape but after preprocessing operations
     """
-    attributes[Attributes.X] = attributes[Attributes.X_RAW]
+    attributes[Attributes.X] = attributes[Attributes.X_RAW].apply(lambda x: x + 10)
     attributes[Attributes.Y] = attributes[Attributes.Y_RAW]
     return attributes
 
@@ -25,8 +24,8 @@ def train(attributes) -> {}:
     :param attributes: data loaded and preprocessed above
     :return: ready to test network
     """
-    print("Training...")
     attributes[Attributes.MODEL].fit(attributes[Attributes.X], attributes[Attributes.Y])
+    return attributes
 
 
 def test(attributes) -> {}:
@@ -37,10 +36,11 @@ def test(attributes) -> {}:
     :param network: network trained previously
     :return: predictions that will be processed in next step
     """
-    print("Testing...")
-    attributes[Attributes.MODEL].predict(attributes[Attributes.Y])
-    return {}
+    attributes[Attributes.Y] = attributes[Attributes.MODEL].predict(attributes[Attributes.X])
+    return attributes
 
 
-def evaluate(data, predictions):
-    print("Evaluating...")
+def evaluate(attributes):
+    from modules.attributes import Attributes
+    print(attributes[Attributes.Y])
+    print(attributes[Attributes.Y_TRUE])
