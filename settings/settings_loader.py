@@ -23,8 +23,8 @@ class SettingsLoader:
         print("Settings:")
         print(yaml.dump(settings_file, default_flow_style=False))
         Settings.input_data_file = settings_file['data']['path']
-        Settings.data_loader_module_path = settings_file['modules']['data_loader']
+        Settings.model_initializer_module_path = settings_file['modules']['model_initializer']
         Settings.data_preprocessor_module_path = settings_file['modules']['data_preprocessor']
-        Settings.net_trainer_module_path = settings_file['modules']['net_trainer']
-        Settings.net_tester_module_path = settings_file['modules']['net_tester']
-        Settings.net_evaluator_module_path = settings_file['modules']['net_evaluator']
+        Settings.model_trainer_module_path = settings_file['modules']['model_trainer']
+        Settings.model_tester_module_path = settings_file['modules']['model_tester']
+        Settings.model_evaluator_module_path = settings_file['modules']['model_evaluator']
