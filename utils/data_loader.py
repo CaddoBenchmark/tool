@@ -1,4 +1,7 @@
+from copy import deepcopy
+
 from caddo_file_parser.caddo_file_parser import CaddoFileParser
+from caddo_file_parser.models.index_set import IndexSet
 from pandas import DataFrame
 
 from modules.attributes import Attributes
@@ -32,22 +35,22 @@ class DataLoader:
 
     def _load_metadata(self, caddo_file) -> dict:
         metadata = dict()
-        metadata[Attributes.DATA_SETS] = caddo_file.folds
+        metadata[Attributes.RUNS] = caddo_file.runs
         return metadata
 
-    def create_train_attributes(self, attributes, dataset):
+    def create_train_attributes(self, attributes, index_set: IndexSet):
         train_attributes = dict()
-        train_attributes[Attributes.X] = attributes[Attributes.X].iloc[dataset.train_indexes]
-        train_attributes[Attributes.Y] = attributes[Attributes.Y].iloc[dataset.train_indexes]
+        train_attributes[Attributes.X] = deepcopy(attributes[Attributes.X].iloc[index_set.train_indexes])
+        train_attributes[Attributes.Y] = deepcopy(attributes[Attributes.Y].iloc[index_set.train_indexes])
         train_attributes[Attributes.MODEL] = attributes[Attributes.MODEL]
         return train_attributes
 
-    def create_test_attributes(self, attributes, dataset):
+    def create_test_attributes(self, attributes, index_set: IndexSet):
         test_attributes = dict()
-        test_attributes[Attributes.X] = attributes[Attributes.X].iloc[dataset.test_indexes]
+        test_attributes[Attributes.X] = deepcopy(attributes[Attributes.X].iloc[index_set.test_indexes])
         test_attributes[Attributes.MODEL] = attributes[Attributes.MODEL]
         return test_attributes
 
-    def enchance_with_proper_responses(self, attributes, dataset, test_attributes):
-        test_attributes[Attributes.Y_TRUE] = attributes[Attributes.Y].iloc[dataset.test_indexes]
+    def enchance_with_proper_responses(self, attributes, index_set: IndexSet, test_attributes):
+        test_attributes[Attributes.Y_TRUE] = attributes[Attributes.Y].iloc[index_set.test_indexes]
         return test_attributes
