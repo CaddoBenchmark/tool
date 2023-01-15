@@ -37,15 +37,21 @@ class Caddo:
         self.summarize_preprocessed_files(attributes)
         print("\n\n\nInitializing model")
         attributes = self.model_initializer_module.init_model(attributes)
-        print("\nTRAINING MODEL")
-        for dataset in metadata[Attributes.DATA_SETS]:
-            train_attributes = self.date_loader.create_train_attributes(attributes, dataset)
-            test_attributes = self.date_loader.create_test_attributes(attributes, dataset)
-            self.model_trainer_module.train(train_attributes)
-            self.model_tester_module.test(test_attributes)
-            self.model_evaluator_module.evaluate(
-                self.date_loader.enchance_with_proper_responses(attributes, dataset, test_attributes)
-            )
+        print("\nBENCHMARKING MODEL\n")
+        for run in metadata[Attributes.RUNS]:
+            for index_set in run.index_sets:
+                print(f"Running benchmark on Run {run.number} index_set {index_set.number}")
+                train_attributes = self.date_loader.create_train_attributes(attributes, index_set)
+                test_attributes = self.date_loader.create_test_attributes(attributes, index_set)
+                print("Training model")
+                self.model_trainer_module.train(train_attributes)
+                print("Testing model")
+                self.model_tester_module.test(test_attributes)
+                print("Evaluating model")
+                self.model_evaluator_module.evaluate(
+                    self.date_loader.enchance_with_proper_responses(attributes, index_set, test_attributes)
+                )
+                print()
 
     def summarize_raw_attributes(self, attributes):
         print("Input data summary")
@@ -56,7 +62,7 @@ class Caddo:
         print(attributes[Attributes.Y_RAW].head(5))
 
     def summarize_preprocessed_files(self, attributes):
-        print("Input data summary")
+        print("Input data summary after preprocessing")
         print("X head:")
         print(attributes[Attributes.X].head(5))
         print()
