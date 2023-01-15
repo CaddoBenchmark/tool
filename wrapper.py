@@ -1,13 +1,3 @@
-def load() -> {}:
-    """
-    Loads data into framework
-    :return: dictionary with loaded data
-    """
-    data = {'a': 'b'}
-    print("Data loading...")
-    return data
-
-
 # preprocess data in framework
 def preprocess(data) -> {}:
     """
