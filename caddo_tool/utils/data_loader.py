@@ -4,8 +4,8 @@ from caddo_file_parser.caddo_file_parser import CaddoFileParser
 from caddo_file_parser.models.index_set import IndexSet
 from pandas import DataFrame
 
-from modules.attributes import Attributes
-from settings.settings import Settings
+from caddo_tool.modules import Attributes
+from caddo_tool.settings.settings import Settings
 
 
 class DataLoader:

@@ -1,8 +1,8 @@
-from modules.attributes import Attributes
-from modules.module_loader import ModuleLoader
-from settings.settings_loader import SettingsLoader
+from caddo_tool.modules import Attributes
+from caddo_tool.modules.module_loader import ModuleLoader
+from caddo_tool.settings import SettingsLoader
 
-from utils.data_loader import DataLoader
+from caddo_tool.utils.data_loader import DataLoader
 
 
 class Caddo:
