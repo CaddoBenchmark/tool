@@ -1,5 +1,5 @@
 def preprocess(attributes) -> {}:
-    from modules.attributes import Attributes
+    from caddo_tool.modules import Attributes
     """
     Preprocess data in framework
     :param data: data read in previous step
@@ -12,13 +12,13 @@ def preprocess(attributes) -> {}:
 
 def init_model(attributes) -> {}:
     from sklearn.tree import DecisionTreeClassifier
-    from modules.attributes import Attributes
+    from caddo_tool.modules import Attributes
     attributes[Attributes.MODEL] = DecisionTreeClassifier()
     return attributes
 
 
 def train(attributes) -> {}:
-    from modules.attributes import Attributes
+    from caddo_tool.modules import Attributes
     """
     Make some training routines on provided data
     :param attributes: data loaded and preprocessed above
@@ -29,7 +29,7 @@ def train(attributes) -> {}:
 
 
 def test(attributes) -> {}:
-    from modules.attributes import Attributes
+    from caddo_tool.modules import Attributes
     """
     Make tests on provided X data
     :param data_x: only X data, different from one provided in training step
@@ -41,6 +41,6 @@ def test(attributes) -> {}:
 
 
 def evaluate(attributes):
-    from modules.attributes import Attributes
+    from caddo_tool.modules import Attributes
     print(attributes[Attributes.Y])
     print(attributes[Attributes.Y_TRUE])
