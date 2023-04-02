@@ -13,6 +13,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+[options]
 install_requires = [
     'scikit-learn',
     'caddo-file-parser'
