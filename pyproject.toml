@@ -18,3 +18,5 @@ install_requires = [
     'scikit-learn',
     'caddo-file-parser'
 ]
+[tool.setuptools]
+py-modules = ['caddo_tool']
