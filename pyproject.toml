@@ -21,3 +21,6 @@ dependencies = [
 ]
 [tool.setuptools]
 py-modules = ['caddo_tool']
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

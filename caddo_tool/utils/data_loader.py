@@ -25,6 +25,7 @@ class DataLoader:
         attributes = dict()
         attributes[Attributes.X_RAW] = self._get_raw_x(caddo_file.data)
         attributes[Attributes.Y_RAW] = self._get_raw_y(caddo_file.data)
+        attributes[Attributes.STORE] = dict()
         return attributes
 
     def _get_raw_x(self, data) -> DataFrame:
@@ -42,13 +43,15 @@ class DataLoader:
         train_attributes = dict()
         train_attributes[Attributes.X] = deepcopy(attributes[Attributes.X].iloc[index_set.train_indexes])
         train_attributes[Attributes.Y] = deepcopy(attributes[Attributes.Y].iloc[index_set.train_indexes])
-        train_attributes[Attributes.MODEL] = attributes[Attributes.MODEL]
+        train_attributes[Attributes.MODEL] = deepcopy(attributes[Attributes.MODEL])
+        train_attributes[Attributes.STORE] = deepcopy(attributes[Attributes.STORE])
         return train_attributes
 
-    def create_test_attributes(self, attributes, index_set: IndexSet):
+    def create_test_attributes(self, attributes, index_set: IndexSet, train_attributes: dict):
         test_attributes = dict()
         test_attributes[Attributes.X] = deepcopy(attributes[Attributes.X].iloc[index_set.test_indexes])
-        test_attributes[Attributes.MODEL] = attributes[Attributes.MODEL]
+        test_attributes[Attributes.MODEL] = deepcopy(train_attributes[Attributes.MODEL])
+        test_attributes[Attributes.STORE] = deepcopy(attributes[Attributes.STORE] | train_attributes[Attributes.STORE])
         return test_attributes
 
     def enchance_with_proper_responses(self, attributes, index_set: IndexSet, test_attributes):

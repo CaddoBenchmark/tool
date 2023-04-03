@@ -33,3 +33,4 @@ class SettingsLoader:
         Settings.model_trainer_module_path = settings_file['modules']['model_trainer']
         Settings.model_tester_module_path = settings_file['modules']['model_tester']
         Settings.model_evaluator_module_path = settings_file['modules']['model_evaluator']
+        Settings.summarizer_module_path = settings_file['modules']['summarizer']

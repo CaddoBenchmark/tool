@@ -32,3 +32,8 @@ class ModuleLoader:
     def load_module(self, path_to_module):
         __import__(path_to_module)
         return sys.modules[path_to_module]
+
+    def load_summarize(self):
+        module = self.load_module(Settings.summarizer_module_path)
+        print("Summarizer loaded!")
+        return module

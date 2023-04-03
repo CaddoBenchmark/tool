@@ -5,3 +5,4 @@ class Settings:
     model_trainer_module_path = ''
     model_tester_module_path = ''
     model_evaluator_module_path = ''
+    summarizer_module_path = ''
