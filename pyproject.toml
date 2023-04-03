@@ -15,7 +15,9 @@ classifiers = [
 ]
 dependencies = [
     'scikit-learn',
-    'caddo-file-parser'
+    'caddo-file-parser',
+    'numpy',
+    'pandas'
 ]
 [tool.setuptools]
 py-modules = ['caddo_tool']
