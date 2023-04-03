@@ -1,3 +1,6 @@
+import os
+import sys
+
 import yaml
 from yaml import SafeLoader
 
@@ -5,8 +8,10 @@ from caddo_tool.settings.settings import Settings
 
 
 class SettingsLoader:
-    def __init__(self, settings_path=''):
-        self.settings_path = settings_path
+    def __init__(self):
+        self.settings_path = f'{os.getcwd()}/settings.yaml'
+        if sys.argv[1] == '--configuration':
+            self.settings_path = str(sys.argv[2])
 
     def load(self):
         print("LOADING SETTINGS:")
