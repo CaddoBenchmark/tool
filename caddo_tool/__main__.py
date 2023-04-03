@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from caddo_tool.modules.attributes import Attributes
 from caddo_tool.modules.module_loader import ModuleLoader
 from caddo_tool.settings.settings_loader import SettingsLoader
@@ -25,6 +27,7 @@ class Caddo:
         self.model_trainer_module = module_loader.load_model_trainer()
         self.model_tester_module = module_loader.load_model_tester()
         self.model_evaluator_module = module_loader.load_model_evaluator()
+        self.summarize_module = module_loader.load_summarize()
         print()
 
     def run(self):
@@ -43,16 +46,18 @@ class Caddo:
             for index_set in run.index_sets:
                 print(f"Running benchmark on Run {run.number} index_set {index_set.number}")
                 train_attributes = self.date_loader.create_train_attributes(attributes, index_set)
-                test_attributes = self.date_loader.create_test_attributes(attributes, index_set)
                 print("Training model")
                 self.model_trainer_module.train(train_attributes)
                 print("Testing model")
+                test_attributes = self.date_loader.create_test_attributes(attributes, index_set, train_attributes)
                 self.model_tester_module.test(test_attributes)
                 print("Evaluating model")
+                self._copy_attributes_back(test_attributes, attributes)
                 self.model_evaluator_module.evaluate(
                     self.date_loader.enchance_with_proper_responses(attributes, index_set, test_attributes)
                 )
                 print()
+        self.summarize_module.summarize(attributes)
 
     def summarize_raw_attributes(self, attributes):
         print("Input data summary")
@@ -77,6 +82,9 @@ class Caddo:
         has_same_cardinality = len(x) == len(y)
         if not has_same_cardinality:
             raise AttributeError('Cardinality of post processed X and  Y are different')
+
+    def _copy_attributes_back(self, test_attributes, attributes):
+        attributes[Attributes.STORE] = deepcopy(test_attributes[Attributes.STORE] | attributes[Attributes.STORE])
 
 
 if __name__ == '__main__':
