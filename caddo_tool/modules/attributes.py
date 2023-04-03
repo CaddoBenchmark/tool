@@ -10,3 +10,4 @@ class Attributes(Enum):
     X = "X"
     Y = "Y"
     MODEL = "Model"
+    STORE = "Store"
