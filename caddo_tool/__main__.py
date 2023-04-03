@@ -34,6 +34,7 @@ class Caddo:
         self.summarize_raw_attributes(attributes)
         print("\n\n\nPREPROCESSING FILE")
         attributes = self.data_preprocessor_module.preprocess(attributes)
+        self._check_if_x_and_y_has_same_cardinality(attributes)
         self.summarize_preprocessed_files(attributes)
         print("\n\n\nInitializing model")
         attributes = self.model_initializer_module.init_model(attributes)
@@ -68,6 +69,14 @@ class Caddo:
         print()
         print("Y head:")
         print(attributes[Attributes.Y].head(5))
+
+    def _check_if_x_and_y_has_same_cardinality(self, attributes):
+        print('Checking if number of X and Y is the same')
+        x = attributes[Attributes.X]
+        y = attributes[Attributes.Y]
+        has_same_cardinality = len(x) == len(y)
+        if not has_same_cardinality:
+            raise AttributeError('Cardinality of post processed X and  Y are different')
 
 
 if __name__ == '__main__':
