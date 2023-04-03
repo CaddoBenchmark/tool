@@ -7,7 +7,7 @@ from caddo_tool.utils.data_loader import DataLoader
 
 class Caddo:
     def __init__(self):
-        SettingsLoader('./settings.yaml').load()
+        SettingsLoader().load()
         self.date_loader = DataLoader()
         self.model_initializer_module = None
         self.data_preprocessor_module = None
