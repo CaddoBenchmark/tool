@@ -19,8 +19,3 @@ dependencies = [
     'numpy',
     'pandas'
 ]
-[tool.setuptools]
-packages = ['caddo_tool']
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
