@@ -5,7 +5,7 @@ from caddo_tool.modules.module_loader import ModuleLoader
 from caddo_tool.settings.settings_loader import SettingsLoader
 
 from caddo_tool.utils.data_loader import DataLoader
-from utils.dict_utils import merge_dict
+from caddo_tool.utils.dict_utils import merge_dict
 
 
 class Caddo:
