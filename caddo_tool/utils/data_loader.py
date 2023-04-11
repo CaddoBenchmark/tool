@@ -6,6 +6,7 @@ from pandas import DataFrame
 
 from caddo_tool.modules.attributes import Attributes
 from caddo_tool.settings.settings import Settings
+from caddo_tool.utils.dict_utils import merge_dict
 
 
 class DataLoader:
@@ -51,7 +52,7 @@ class DataLoader:
         test_attributes = dict()
         test_attributes[Attributes.X] = deepcopy(attributes[Attributes.X].iloc[index_set.test_indexes])
         test_attributes[Attributes.MODEL] = deepcopy(train_attributes[Attributes.MODEL])
-        test_attributes[Attributes.STORE] = deepcopy(attributes[Attributes.STORE] | train_attributes[Attributes.STORE])
+        test_attributes[Attributes.STORE] = deepcopy(merge_dict(attributes[Attributes.STORE], train_attributes[Attributes.STORE]))
         return test_attributes
 
     def enchance_with_proper_responses(self, attributes, index_set: IndexSet, test_attributes):
