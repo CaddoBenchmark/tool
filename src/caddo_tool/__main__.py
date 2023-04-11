@@ -1,11 +1,11 @@
 from copy import deepcopy
 
-from caddo_tool.modules.attributes import Attributes
-from caddo_tool.modules.module_loader import ModuleLoader
-from caddo_tool.settings.settings_loader import SettingsLoader
+from src.caddo_tool.modules.attributes import Attributes
+from src.caddo_tool.modules.module_loader import ModuleLoader
+from src.caddo_tool.settings.settings_loader import SettingsLoader
 
-from caddo_tool.utils.data_loader import DataLoader
-from caddo_tool.utils.dict_utils import merge_dict
+from src.caddo_tool.utils.data_loader import DataLoader
+from src.caddo_tool.utils.dict_utils import merge_dict
 
 
 class Caddo:

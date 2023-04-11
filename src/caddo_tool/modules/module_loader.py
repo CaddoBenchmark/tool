@@ -1,6 +1,6 @@
 import sys
 
-from caddo_tool.settings.settings import Settings
+from src.caddo_tool.settings.settings import Settings
 
 
 class ModuleLoader:
