@@ -5,6 +5,7 @@ from caddo_tool.modules.module_loader import ModuleLoader
 from caddo_tool.settings.settings_loader import SettingsLoader
 
 from caddo_tool.utils.data_loader import DataLoader
+from caddo_tool.utils.dict_utils import merge_dict
 
 
 class Caddo:
@@ -53,9 +54,9 @@ class Caddo:
                 self.model_tester_module.test(test_attributes)
                 print("Evaluating model")
                 self._copy_attributes_back(test_attributes, attributes)
-                self.model_evaluator_module.evaluate(
-                    self.date_loader.enchance_with_proper_responses(attributes, index_set, test_attributes)
-                )
+                evaluate_attributes = self.date_loader.enchance_with_proper_responses(attributes, index_set, test_attributes)
+                self.model_evaluator_module.evaluate(evaluate_attributes)
+                self._copy_attributes_back(evaluate_attributes, attributes)
                 print()
         self.summarize_module.summarize(attributes)
 
@@ -84,7 +85,7 @@ class Caddo:
             raise AttributeError('Cardinality of post processed X and  Y are different')
 
     def _copy_attributes_back(self, test_attributes, attributes):
-        attributes[Attributes.STORE] = deepcopy(test_attributes[Attributes.STORE] | attributes[Attributes.STORE])
+        attributes[Attributes.STORE] = deepcopy(merge_dict(test_attributes[Attributes.STORE], attributes[Attributes.STORE]))
 
 
 if __name__ == '__main__':
