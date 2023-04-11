@@ -7,7 +7,7 @@ from pandas import DataFrame
 from caddo_tool.modules.attributes import Attributes
 from caddo_tool.settings.settings import Settings
 
-from utils.dict_utils import merge_dict
+from caddo_tool.utils.dict_utils import merge_dict
 
 
 class DataLoader:
