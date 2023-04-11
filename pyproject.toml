@@ -20,7 +20,7 @@ dependencies = [
     'pandas'
 ]
 [tool.setuptools]
-py-modules = ['caddo_tool']
+packages = ['caddo_tool']
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
