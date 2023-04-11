@@ -4,7 +4,7 @@ import sys
 import yaml
 from yaml import SafeLoader
 
-from src.caddo_tool.settings.settings import Settings
+from caddo_tool.settings.settings import Settings
 
 
 class SettingsLoader:
