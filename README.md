@@ -12,7 +12,7 @@ user@computer:~$ pip install caddo-tool
 
 #### Implement all benchmark functions and run from command line
 ```
-user@computer:~$ caddo_tool
+user@computer:~$ caddo_tool --configuration <path>
 ```
 
 ## 📓 Any documentation?
